@@ -1,0 +1,23 @@
+{
+  "name": "wavez",
+  "version": "1.0.0",
+  "description": "travel site for omi",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wavezlearning/wavez.git"
+  },
+  "author": "omi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wavezlearning/wavez/issues"
+  },
+  "homepage": "https://github.com/wavezlearning/wavez#readme",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "normalize.css": "^7.0.0"
+  }
+}

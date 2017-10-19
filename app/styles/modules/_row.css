@@ -18,7 +18,7 @@
         &__gutters > div {
             padding-right: 65px;
         }
-        &__gutters-small {
+        &__gutters-small { 
              padding-right: -45px;
         }
         &__gutters-large > div {

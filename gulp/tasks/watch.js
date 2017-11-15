@@ -12,11 +12,17 @@ gulp.task('watch', function(){
     watch('./app/index.html', function(){
         browserSync.reload();
     });
-        watch('./app/styles/**/*.css', function(){
+    watch('./app/styles/**/*.css', function(){
         gulp.start('cssInject');
+    });
+    watch('./app/assets/scripts/**/*.js', function(){
+        gulp.start('scriptsRefresh');
     });
 });
 gulp.task('cssInject',['css'],function(){
     return gulp.src('./app/temp/styles/styles.css')
     .pipe(browserSync.stream());
+}); 
+gulp.task('scriptsRefresh',['scripts'],function(){
+    browserSync.reload();
 }); 

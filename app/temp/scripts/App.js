@@ -10058,8 +10058,8 @@ var RevealOnScroll = function () {
         _classCallCheck(this, RevealOnScroll);
 
         this.itemsToReveal = els;
-        this.hideInitially();
         this.offsetPercentage = offset;
+        this.hideInitially();
         this.createWaypoints();
     }
 

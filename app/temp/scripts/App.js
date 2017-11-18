@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -9897,10 +9897,40 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function get() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function get() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10655,13 +10685,13 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 })();
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _MobileMenu = __webpack_require__(3);
+var _MobileMenu = __webpack_require__(4);
 
 var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
@@ -10714,7 +10744,7 @@ jane.payTaxes();
 //$("h1").remove();
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10764,36 +10794,6 @@ var MobileMenu = function () {
 exports.default = MobileMenu;
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function get() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function get() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10810,7 +10810,7 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _noframework = __webpack_require__(1);
+var _noframework = __webpack_require__(2);
 
 var _noframework2 = _interopRequireDefault(_noframework);
 
@@ -10872,7 +10872,7 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _noframework = __webpack_require__(1);
+var _noframework = __webpack_require__(2);
 
 var _noframework2 = _interopRequireDefault(_noframework);
 
@@ -10888,6 +10888,7 @@ var StickyHeader = function () {
     function StickyHeader() {
         _classCallCheck(this, StickyHeader);
 
+        this.lazyImages = (0, _jquery2.default)('.lazyload');
         this.siteHeader = (0, _jquery2.default)('.site-header');
         this.triggerElement = (0, _jquery2.default)('.large-hero__title');
         this.createHeaderWaypoint();
@@ -10895,9 +10896,17 @@ var StickyHeader = function () {
         this.headerLinks = (0, _jquery2.default)('.primary-nav a');
         this.createPageSectionWaypoints();
         this.addSmoothScroll();
+        this.refreshWaypoints();
     }
 
     _createClass(StickyHeader, [{
+        key: 'refreshWaypoints',
+        value: function refreshWaypoints() {
+            this.lazyImages.load(function () {
+                Waypoint.refreshAll();
+            });
+        }
+    }, {
         key: 'addSmoothScroll',
         value: function addSmoothScroll() {
             this.headerLinks.smoothScroll();
